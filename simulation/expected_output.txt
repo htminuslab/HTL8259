@@ -1,0 +1,91 @@
+#  run -all
+# ------- Test Spurious Interrupt --------
+# *** Request   IRm=00 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ7 Vector 47
+# ------- Test Non-Specific Interrupt --------
+# *** Request  IRQ3 IRQ6  IRm=48 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ3 Vector 43
+# *** Request  IRQ3 IRQ6  IRm=48 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ3 Vector 43
+# --- Test Non-Specific Interrupt + Rotate ----
+# *** Request  IRQ3 IRQ6  IRm=48 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ3 Vector 43
+# *** Request  IRQ3 IRQ6  IRm=48 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ6 Vector 46
+# *** Request  IRQ3 IRQ6  IRm=48 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ3 Vector 43
+# ------- Test Spurious Interrupt after rotate --------
+# *** Request   IRm=00 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ7 Vector 47
+# --- Test Specific Interrupt ----
+# *** Request  IRQ3 IRQ6  IRm=48 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ3 Vector 43
+# *** Request  IRQ3 IRQ6  IRm=48 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ3 Vector 43
+# --- Test Specific Interrupt + Rotate----
+# *** Request  IRQ3 IRQ6  IRm=48 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ3 Vector 43
+# *** Request  IRQ3 IRQ6  IRm=48 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ6 Vector 46
+# *** Request  IRQ3 IRQ6  IRm=48 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ3 Vector 43
+# --- Test Automatic EOI Edge triggered ----
+# *** Request  IRQ0 IRQ3 IRQ6 IRQ7  IRm=C9 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ0 Vector 40
+# *** Request  IRQ0 IRQ3 IRQ6 IRQ7  IRm=C8 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ3 Vector 43
+# *** Request  IRQ0 IRQ3 IRQ6 IRQ7  IRm=C0 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ6 Vector 46
+# *** Request  IRQ0 IRQ3 IRQ6 IRQ7  IRm=80 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ7 Vector 47
+# --- Test Automatic EOI + Rotate ----
+# *** Request  IRQ0 IRQ3 IRQ6 IRQ7  IRm=C9 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ0 Vector 40
+# *** Request  IRQ0 IRQ3 IRQ6 IRQ7  IRm=C9 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ3 Vector 43
+# *** Request  IRQ0 IRQ3 IRQ6 IRQ7  IRm=C9 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ6 Vector 46
+# *** Request  IRQ0 IRQ3 IRQ6 IRQ7  IRm=C9 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ7 Vector 47
+# --- Test Automatic EOI level Stuck IRQ0 ----
+# *** Request  IRQ0 IRQ3 IRQ6 IRQ7  IRm=C9 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ0 Vector 40
+# *** Request  IRQ0 IRQ3 IRQ6 IRQ7  IRm=C9 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ0 Vector 40
+# *** Request  IRQ0 IRQ3 IRQ6 IRQ7  IRm=C9 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ0 Vector 40
+# *** Request  IRQ0 IRQ3 IRQ6 IRQ7  IRm=C9 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ0 Vector 40
+# ------- Test Level Interrupt --------
+# *** Request  IRQ4  IRm=10 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ4 Vector 44
+# *** Request  IRQ4  IRm=10 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ4 Vector 44
+# --- Test Edge triggered Interrupt ----
+# *** Request  IRQ4  IRm=10 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ4 Vector 44
+# --- Test Priority Interrupt ----
+# *** Request  IRQ3 IRQ4 IRQ5  IRm=38 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ3 Vector 43
+# *** Request  IRQ4 IRQ5  IRm=30 ISm=08 MKm=08  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ4 Vector 44
+# *** Request  IRQ5  IRm=20 ISm=18 MKm=18  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ5 Vector 45
+# --- Test EOI Master Rotate EOI Slave ----
+# *** Request  IRQ1 IRQ3 IRQ12 IRQ13 IRQ14  IRm=0E ISm=00 MKm=00  IRs=70 ISs=00 MKs=00  -> 8086 INTA :IRQ1 Vector 41
+# *** Request  IRQ1 IRQ3 IRQ12 IRQ13 IRQ14  IRm=0C ISm=00 MKm=00  IRs=70 ISs=00 MKs=00  -> 8086 INTA :IRQ4 Vector 84
+# *** Request  IRQ1 IRQ3 IRQ12 IRQ13 IRQ14  IRm=0C ISm=00 MKm=00  IRs=60 ISs=00 MKs=00  -> 8086 INTA :IRQ5 Vector 85
+# *** Request  IRQ1 IRQ3 IRQ12 IRQ13 IRQ14  IRm=0C ISm=00 MKm=00  IRs=40 ISs=00 MKs=00  -> 8086 INTA :IRQ6 Vector 86
+# *** Request  IRQ1 IRQ3 IRQ12 IRQ13 IRQ14  IRm=08 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ3 Vector 43
+# *** Request  IRQ8 IRQ15  IRm=04 ISm=00 MKm=00  IRs=81 ISs=00 MKs=00  -> 8086 INTA :IRQ7 Vector 87
+# *** Request  IRQ8 IRQ15  IRm=04 ISm=00 MKm=00  IRs=01 ISs=00 MKs=00  -> 8086 INTA :IRQ0 Vector 80
+# *** Request  IRQ8 IRQ15  IRm=04 ISm=00 MKm=00  IRs=81 ISs=00 MKs=00  -> 8086 INTA :IRQ7 Vector 87
+# *** Request  IRQ8 IRQ15  IRm=04 ISm=00 MKm=00  IRs=01 ISs=00 MKs=00  -> 8086 INTA :IRQ0 Vector 80
+# *** Request  IRQ9 IRQ15  IRm=04 ISm=00 MKm=00  IRs=82 ISs=00 MKs=00  -> 8086 INTA :IRQ1 Vector 81
+# *** Request  IRQ9 IRQ15  IRm=04 ISm=00 MKm=00  IRs=80 ISs=00 MKs=00  -> 8086 INTA :IRQ7 Vector 87
+# --- Test Specific Priority1, set lowest priority to IRQ5 ----
+# *** Request  IRQ0 IRQ6  IRm=41 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ6 Vector 46
+# *** Request  IRQ0 IRQ6  IRm=01 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ0 Vector 40
+# --- Test Specific Priority2, set lowest priority to IRQ5 ----
+# *** Request  IRQ0 IRQ5  IRm=21 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ0 Vector 40
+# *** Request  IRQ0 IRQ5  IRm=20 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ5 Vector 45
+# --- Test Specific Priority3, set lowest priority to IRQ7 ----
+# *** Request  IRQ6 IRQ7  IRm=C0 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ6 Vector 46
+# *** Request  IRQ6 IRQ7  IRm=80 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ7 Vector 47
+# --- Test Special Mask Mode ----
+# *** Request  IRQ3 IRQ6  IRm=48 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ3 Vector 43
+# *** Request  IRQ3 IRQ6  IRm=40 ISm=08 MKm=08  IRs=00 ISs=00 MKs=00  -> 8086 INTA :IRQ6 Vector 46
+# --- Test Special Fully Nested Mode ----
+# *** Request  IRQ12  IRm=04 ISm=00 MKm=00  IRs=10 ISs=00 MKs=00  -> 8086 INTA :IRQ4 Vector 84
+# *** Request  IRQ8 IRQ12  IRm=04 ISm=04 MKm=04  IRs=01 ISs=10 MKs=10  -> 8086 INTA :IRQ0 Vector 80
+# ...   Checking Slave IS=10 not empty, issue EOI to slave only
+# ...   Checking Slave IS=00 empty, issue EOI to master
+# ------- Test Poll Command --------
+#   Interrupt Pending : 81 ISmaster=02
+# ------- Test 8080/8085 mode, interval 4 -------
+# *** Request  IRQ0 IRQ1 IRQ3 IRQ4 IRQ5 IRQ6 IRQ7  IRm=FB ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8080 INTA :CD 20 3B
+# *** Request  IRQ0 IRQ1 IRQ3 IRQ4 IRQ5 IRQ6 IRQ7  IRm=FA ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8080 INTA :CD 24 3B
+# *** Request  IRQ0 IRQ1 IRQ3 IRQ4 IRQ5 IRQ6 IRQ7  IRm=F8 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8080 INTA :CD 2C 3B
+# *** Request  IRQ0 IRQ1 IRQ3 IRQ4 IRQ5 IRQ6 IRQ7  IRm=F0 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8080 INTA :CD 30 3B
+# *** Request  IRQ0 IRQ1 IRQ3 IRQ4 IRQ5 IRQ6 IRQ7  IRm=E0 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8080 INTA :CD 34 3B
+# *** Request  IRQ0 IRQ1 IRQ3 IRQ4 IRQ5 IRQ6 IRQ7  IRm=C0 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8080 INTA :CD 38 3B
+# *** Request  IRQ0 IRQ1 IRQ3 IRQ4 IRQ5 IRQ6 IRQ7  IRm=80 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8080 INTA :CD 3C 3B
+# ------- Test 8080/8085 mode, interval 8 -------
+# *** Request  IRQ0 IRQ1 IRQ3 IRQ4 IRQ5 IRQ6 IRQ7  IRm=FB ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8080 INTA :CD 40 2A
+# *** Request  IRQ0 IRQ1 IRQ3 IRQ4 IRQ5 IRQ6 IRQ7  IRm=FA ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8080 INTA :CD 48 2A
+# *** Request  IRQ0 IRQ1 IRQ3 IRQ4 IRQ5 IRQ6 IRQ7  IRm=F8 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8080 INTA :CD 58 2A
+# *** Request  IRQ0 IRQ1 IRQ3 IRQ4 IRQ5 IRQ6 IRQ7  IRm=F0 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8080 INTA :CD 60 2A
+# *** Request  IRQ0 IRQ1 IRQ3 IRQ4 IRQ5 IRQ6 IRQ7  IRm=E0 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8080 INTA :CD 68 2A
+# *** Request  IRQ0 IRQ1 IRQ3 IRQ4 IRQ5 IRQ6 IRQ7  IRm=C0 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8080 INTA :CD 70 2A
+# *** Request  IRQ0 IRQ1 IRQ3 IRQ4 IRQ5 IRQ6 IRQ7  IRm=80 ISm=00 MKm=00  IRs=00 ISs=00 MKs=00  -> 8080 INTA :CD 78 2A
+# ** Failure: end of simulation

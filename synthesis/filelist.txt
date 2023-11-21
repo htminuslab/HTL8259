@@ -1,0 +1,14 @@
+../rtl/pulselevel.vhd
+../rtl/pulselevel.vhd
+../rtl/frontend_rtl.vhd
+../rtl/frontend_rtl.vhd
+../rtl/priority_rtl.vhd
+../rtl/priority_rtl.vhd
+../rtl/backend_rtl.vhd
+../rtl/backend_rtl.vhd
+../rtl/wrctrl.vhd
+../rtl/wrctrl.vhd
+../rtl/ctrl.vhd
+../rtl/ctrl.vhd
+../rtl/htl8259a.vhd
+../rtl/htl8259a.vhd
